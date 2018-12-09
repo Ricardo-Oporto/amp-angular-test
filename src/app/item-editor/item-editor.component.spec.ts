@@ -44,8 +44,15 @@ describe('ItemEditorComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should emit value on add', () => {
+  it('should emit value on add when form is valid', () => {
+    component.shoppingItemForm.setErrors(null);
     component.onSubmit();
-    expect(addSpy).toHaveBeenCalledWith(item);
+    expect(addSpy).toHaveBeenCalled();
+  });
+
+  it('should not emit value on add when form is valid', () => {
+    component.shoppingItemForm.setErrors({ inValid: true });
+    component.onSubmit();
+    expect(addSpy).not.toHaveBeenCalled();
   });
 });
