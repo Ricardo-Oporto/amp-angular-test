@@ -20,13 +20,15 @@ import {
 import { ShoppingCartListComponent } from './shopping-cart-list/shopping-cart-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TotalPricePipe } from './pipes/total-price.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShoppingCartComponent,
     ItemEditorComponent,
-    ShoppingCartListComponent
+    ShoppingCartListComponent,
+    TotalPricePipe
   ],
   imports: [
     BrowserModule,

@@ -7,7 +7,8 @@ export class ShoppingCartService {
   private _list$ = new BehaviorSubject<IShoppingItem[]>([]);
 
   public addItem = (item: IShoppingItem) => {
-    this._list$.next([...this._list$.getValue(), item]);
+    item.id = this._list$.getValue().length;
+    this._list$.next([...this._list$.getValue(), Object.assign({}, item)]);
   };
 
   getlist$ = () => {

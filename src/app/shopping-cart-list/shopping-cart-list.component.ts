@@ -6,7 +6,6 @@ import {
   MatTable
 } from '@angular/material';
 import { IShoppingItem } from '../models/shopping-item';
-import { DataSource } from '@angular/cdk/table';
 
 export interface UserData {
   name: string;
@@ -52,6 +51,8 @@ export class ShoppingCartListComponent implements OnInit, OnChanges {
   }
 
   removeRow = (row: any) => {
-    console.warn('help', row);
+    this.dataSource.data = this.dataSource.data.filter(
+      item => item.id !== row.id
+    );
   };
 }

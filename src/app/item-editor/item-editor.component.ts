@@ -18,7 +18,6 @@ export class ItemEditorComponent implements OnInit {
   constructor() {}
 
   onSubmit() {
-    console.warn(this.shoppingItemForm.value);
     this.add.emit(this.shoppingItemForm.value);
   }
 
