@@ -50,7 +50,7 @@ export class ShoppingCartListComponent implements OnInit, OnChanges {
     this.dataSource.data = this.items;
   }
 
-  removeRow = (row: any) => {
+  removeRow = (row: IShoppingItem) => {
     this.dataSource.data = this.dataSource.data.filter(
       item => item.id !== row.id
     );

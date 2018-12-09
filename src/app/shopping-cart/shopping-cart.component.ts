@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class ShoppingCartComponent implements OnInit {
   list: Observable<IShoppingItem[]>;
   constructor(private shoppingCartService: ShoppingCartService) {
-    this.list = shoppingCartService.getlist$();
+    this.list = shoppingCartService.getlist();
   }
 
   ngOnInit() {}
