@@ -10,20 +10,23 @@
             <mat-option [value]="'Milk'">Milk</mat-option>
             <mat-option [value]="'Sugar'">Sugar</mat-option>
           </mat-select>
+          <mat-error *ngIf="shoppingItemForm.controls['name'].hasError('required')">required</mat-error>
         </mat-form-field>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-6">
         <mat-form-field>
-          <input matInput placeholder="Qty" min="1" type="number" formControlName="quantity">
+          <input matInput placeholder="Qty" min="1" type="number" formControlName="quantity" required>
+          <mat-error *ngIf="shoppingItemForm.controls['quantity'].invalid">required</mat-error>
         </mat-form-field>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-6">
         <mat-form-field>
-          <input matInput placeholder="Price" step="0.05" type="number" formControlName="price">
+          <input matInput placeholder="Price" step="0.05" type="number" formControlName="price" required>
+          <mat-error *ngIf="shoppingItemForm.controls['price'].invalid">required</mat-error>
         </mat-form-field>
       </div>
     </div>

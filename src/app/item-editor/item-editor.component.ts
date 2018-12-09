@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IShoppingItem } from '../models/shopping-item';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-item-editor',
@@ -11,14 +11,16 @@ export class ItemEditorComponent implements OnInit {
   @Output() add = new EventEmitter<IShoppingItem>();
 
   shoppingItemForm = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('', [Validators.required]),
     quantity: new FormControl(''),
     price: new FormControl('')
   });
   constructor() {}
 
   onSubmit() {
-    this.add.emit(this.shoppingItemForm.value);
+    if (this.shoppingItemForm.valid) {
+      this.add.emit(this.shoppingItemForm.value);
+    }
   }
 
   ngOnInit() {}
