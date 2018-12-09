@@ -1,4 +1,12 @@
-import { Component, OnInit, ViewChild, Input, OnChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  Input,
+  OnChanges,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import {
   MatPaginator,
   MatSort,
@@ -7,18 +15,14 @@ import {
 } from '@angular/material';
 import { IShoppingItem } from '../models/shopping-item';
 
-export interface UserData {
-  name: string;
-  quantity: string;
-  price: string;
-}
-
 @Component({
   selector: 'app-shopping-cart-list',
   templateUrl: './shopping-cart-list.component.html',
   styleUrls: ['./shopping-cart-list.component.scss']
 })
 export class ShoppingCartListComponent implements OnInit, OnChanges {
+  @Input() items: IShoppingItem[];
+  @Output() remove = new EventEmitter<IShoppingItem>();
   displayedColumns: string[] = ['name', 'quantity', 'price', 'remove'];
   dataSource: MatTableDataSource<IShoppingItem>;
 
@@ -26,10 +30,8 @@ export class ShoppingCartListComponent implements OnInit, OnChanges {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
 
-  @Input() items: IShoppingItem[];
-
   constructor() {
-    this.dataSource = new MatTableDataSource([]);
+    this.dataSource = new MatTableDataSource(this.items);
   }
 
   ngOnInit() {
@@ -50,9 +52,7 @@ export class ShoppingCartListComponent implements OnInit, OnChanges {
     this.dataSource.data = this.items;
   }
 
-  removeRow = (row: IShoppingItem) => {
-    this.dataSource.data = this.dataSource.data.filter(
-      item => item.id !== row.id
-    );
+  removeRow = (rowItem: IShoppingItem) => {
+    this.remove.emit(rowItem);
   };
 }

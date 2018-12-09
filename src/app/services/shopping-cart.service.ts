@@ -13,6 +13,10 @@ export class ShoppingCartService {
     ]);
   };
 
+  removeItem = (item: IShoppingItem) => {
+    this._list$.next(this._list$.getValue().filter(i => i.id !== item.id));
+  };
+
   getlist = () => {
     return this._list$.asObservable();
   };

@@ -19,12 +19,14 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { Observable, of } from 'rxjs';
 import { IShoppingItem } from '../models/shopping-item';
+import { CommonModule } from '@angular/common';
 
 describe('ShoppingCartComponent', () => {
   let component: ShoppingCartComponent;
   let fixture: ComponentFixture<ShoppingCartComponent>;
   let shoppingService: ShoppingCartService;
   let shoppingCartAddSpy;
+  let shoppingCartRemoveSpy;
   let shoppingCartGetSpy;
   const item: IShoppingItem = {
     name: 'biscuit',
@@ -60,6 +62,10 @@ describe('ShoppingCartComponent', () => {
     component = fixture.componentInstance;
     shoppingService = TestBed.get(ShoppingCartService);
     shoppingCartAddSpy = spyOn(shoppingService, 'addItem').and.callThrough();
+    shoppingCartRemoveSpy = spyOn(
+      shoppingService,
+      'removeItem'
+    ).and.callThrough();
     shoppingCartGetSpy = spyOn(shoppingService, 'getlist').and.returnValue([
       item
     ]);
@@ -70,9 +76,14 @@ describe('ShoppingCartComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call the shopping cart service when addItem() is called', () => {
+  it('should call the shopping cart service when notified an item is to be added', () => {
     component.addItem(item);
     expect(shoppingCartAddSpy).toHaveBeenCalledWith(item);
+  });
+
+  it('should call the shopping cart service when notified an item is removed', () => {
+    component.removeItem(item);
+    expect(shoppingCartRemoveSpy).toHaveBeenCalledWith(item);
   });
 
   it('should update the list when an item is added', () => {
@@ -80,6 +91,14 @@ describe('ShoppingCartComponent', () => {
 
     component.list.subscribe(list => {
       expect(list).toEqual([{ id: 0, ...item }]);
+    });
+  });
+
+  it('should update the list when an item is removed', () => {
+    component.removeItem(item);
+
+    component.list.subscribe(list => {
+      expect(list).toEqual([]);
     });
   });
 });

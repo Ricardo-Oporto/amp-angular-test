@@ -2,7 +2,7 @@
   <div class="row">list: {{list | async | json}}</div>
   <div class="row flex-sm-row-reverse">
     <div class="col-md-6 col-sm-push-6">
-      <app-shopping-cart-list [items]="list | async"></app-shopping-cart-list>
+      <app-shopping-cart-list [items]="list | async" (remove)="removeItem($event)"></app-shopping-cart-list>
     </div>
     <div class="col-md-6 col-sm-pull-6">
       <app-item-editor (add)="addItem($event)"></app-item-editor>
