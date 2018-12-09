@@ -1,0 +1,40 @@
+<form [formGroup]="shoppingItemForm" (ngSubmit)="onSubmit()">
+  <div class="container  mat-elevation-z8">
+    <div class="row">
+      <p>
+        Selected = {{shoppingItemForm.controls['name'].value}}
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-3">
+        <mat-form-field>
+          <mat-select name="name" formControlName="name" placeholder="Item">
+            <mat-option [value]="'Cookie'">Cookie</mat-option>
+            <mat-option [value]="'Bread'">Bread</mat-option>
+            <mat-option [value]="'Milk'">Milk</mat-option>
+            <mat-option [value]="'Sugar'">Sugar</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-3">
+        <mat-form-field>
+          <input matInput placeholder="Qty" min="1" type="number" formControlName="quantity">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-3">
+        <mat-form-field>
+          <input matInput placeholder="Price" type="number" formControlName="price">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-3">
+        <button mat-raised-button color="primary" type="submit">Add</button>
+      </div>
+    </div>
+  </div>
+</form>
