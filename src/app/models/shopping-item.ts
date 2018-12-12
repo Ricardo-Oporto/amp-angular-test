@@ -1,6 +1,6 @@
 export interface IShoppingItem {
-  id?: number;
   name: string;
   price: number;
+  category: string[];
   quantity: number;
 }

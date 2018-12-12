@@ -7,7 +7,8 @@ describe('ShoppingCartService', () => {
   const item: IShoppingItem = {
     name: 'biscuit',
     price: 5,
-    quantity: 2
+    quantity: 2,
+    category: []
   };
 
   beforeEach(() => {
