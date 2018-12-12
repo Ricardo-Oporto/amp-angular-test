@@ -11,14 +11,15 @@ import { inventory } from '../../assets/grocery';
 export class ItemEditorComponent implements OnInit {
   @Output() add = new EventEmitter<IShoppingItem>();
   inventory = inventory;
-  selectedItem = inventory[0];
-
+  selectedItem;
   shoppingItemForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     quantity: new FormControl(''),
     price: new FormControl('')
   });
-  constructor() {}
+  constructor() {
+    this.selectedItem = inventory[0];
+  }
 
   onSubmit = () => {
     if (this.shoppingItemForm.valid) {

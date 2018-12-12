@@ -21,17 +21,17 @@ describe('ShoppingCartListComponent', () => {
   let fixture: ComponentFixture<ShoppingCartListComponent>;
   let removeItemSpy;
   const item: IShoppingItem = {
-    id: 0,
-    name: 'biscuit',
+    name: 'bread',
     price: 5,
-    quantity: 2
+    quantity: 2,
+    category: ['dairy']
   };
 
   const item2: IShoppingItem = {
-    id: 1,
-    name: 'sugar',
+    name: 'biscuit',
     price: 3,
-    quantity: 1
+    quantity: 3,
+    category: ['snack']
   };
 
   beforeEach(async(() => {

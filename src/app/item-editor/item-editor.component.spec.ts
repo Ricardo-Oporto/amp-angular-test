@@ -35,7 +35,7 @@ describe('ItemEditorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ItemEditorComponent);
     component = fixture.componentInstance;
-    component.shoppingItemForm.setValue(item);
+    component.selectedItem = item;
     addSpy = spyOn(component.add, 'emit');
     fixture.detectChanges();
   });
