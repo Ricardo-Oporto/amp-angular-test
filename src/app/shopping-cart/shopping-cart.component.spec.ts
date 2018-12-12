@@ -90,7 +90,7 @@ describe('ShoppingCartComponent', () => {
     component.addItem(item);
 
     component.list.subscribe(list => {
-      expect(list).toEqual([{ id: 0, ...item }]);
+      expect(list).toEqual([item]);
     });
   });
 

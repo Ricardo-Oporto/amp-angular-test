@@ -23,11 +23,10 @@ describe('ShoppingCartService', () => {
     }
   ));
 
-  it('should update the list when an item is added and add its index as id', inject(
+  it('should update the list when an item is added', inject(
     [ShoppingCartService],
     (service: ShoppingCartService) => {
       service.addItem(item);
-      item.id = 0;
       service.getlist().subscribe(i => {
         expect(i).toEqual([item]);
       });
