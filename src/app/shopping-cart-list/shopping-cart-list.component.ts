@@ -39,14 +39,14 @@ export class ShoppingCartListComponent implements OnInit, OnChanges {
     this.dataSource.sort = this.sort;
     this.dataSource.filterPredicate = (data, text) => {
       return data.category.some(category =>
-        category.toLowerCase().includes(text.toLowerCase())
+        category.toLowerCase().includes(text)
       );
     };
     this.table.dataSource = this.dataSource;
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim();
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();

@@ -77,9 +77,9 @@ describe('ShoppingCartListComponent', () => {
   });
 
   it('should filter the data', () => {
-    component.applyFilter('BreAD');
-    expect(component.dataSource.filter).toEqual('bread');
-    expect(component.dataSource.paginator.pageIndex).toEqual(0);
+    component.items = [item, item2];
+    component.applyFilter('meat');
+    expect(component.dataSource.filteredData.length).toEqual(0);
   });
 
   it('should update the data when changes are detected', () => {
